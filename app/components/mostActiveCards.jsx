@@ -52,7 +52,15 @@ class MostActiveCards extends React.Component {
             return (
               <div className="two-column" key={idCard}>
                 <blockquote className="trello-card" key={idCard}>
-                  <a href={`https://trello.com/c/${idCard}/`}>{cardName}</a>
+                  <a
+                    href={`http://loopback.planatee.com:3000/c/${idCard}/`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      this.props.navigateToCard(idCard);
+                    }}
+                  >
+                    {cardName}
+                  </a>
                 </blockquote>
                 <div>
                   <LineChart width={360} height={100} data={data}>

@@ -34,7 +34,7 @@ class OverdueCards extends React.Component {
           {overdue.map((card) => (
             <div key={card.id}>
               <blockquote className="trello-card" key={card.id}>
-                <a href={`https://trello.com/c/${card.id}/`}>{card.name}</a>
+                <a href={`http://loopback.planatee.com:3000/c/${card.id}/`}>{card.name}</a>
               </blockquote>
               <p>[ ] Mark Complete</p>
             </div>

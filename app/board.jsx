@@ -26,7 +26,9 @@ const ZERO_HOUR = {
   millisecond: 0,
 };
 
-const t = window.TrelloPowerUp.iframe();
+const t = window.TrelloPowerUp.iframe({
+  targetOrigin: 'http://loopback.planatee.com:3000',
+});
 
 class Board extends React.Component {
   constructor(props) {
@@ -107,7 +109,7 @@ class Board extends React.Component {
       limit: 1000,
       before: before.toISOString(),
       since: since.toISOString(),
-      key: '7737388dfc54ea015104894e3a0a56f9',
+      key: 'a1113578045ca9a8bb46fa2c3766c422',
       token,
     };
 
@@ -118,7 +120,7 @@ class Board extends React.Component {
       .map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(reqData[k])}`)
       .join('&');
 
-    fetch(`https://api.trello.com/1/boards/${idBoard}/actions?${qs}`)
+    fetch(`http://loopback.planatee.com:3000/1/boards/${idBoard}/actions?${qs}`)
       .then((resp) => resp.json())
       .then((actions) => {
         const inRange = _.filter(
@@ -280,6 +282,10 @@ class Board extends React.Component {
           actions={this.filteredActions(actions || [])}
           since={since}
           before={before}
+          navigateToCard={(idCard) => {
+            console.log({idCard, t});
+            t.showCard(idCard);
+          }}
         />
 
         <hr />
